@@ -1,4 +1,4 @@
-* {
+/** {
     margin: 0;
     padding: 0;
 }
@@ -14,4 +14,40 @@ h1 {
     border-right-style: solid;
     border-left-style: solid;
     border-left-width: 0px;
+}*/
+
+
+.button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    margin: 2px;
+    background: rgb(68, 121, 202);
+    color: white;
+    border: none;
+}
+
+.button_0 {
+    width: 156px;
+}
+
+.button_equal {
+    height: 50px;
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+h1{
+    text-align: left;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}rgb(230, 94, 94)rgb(145, 46, 46)rgb(0, 0, 0)
+
+body{
+    height: 100%;
 }
