@@ -11,11 +11,11 @@ btnIniciar.addEventListener("click", function () {
     params.append("contrasena", contrasena);
     axios.post("http://localhost:4567/iniciarSesion", { nombre: params.get("nombre"), contrasena: params.get("contrasena") } )
         .then(function (rs) {
-            alert(rs.data)
             if(rs.data ==true){
                 window.location.replace("http://127.0.0.1:5500/listaUsuarios.html");
             }else{
                 alert("Usuario incorrecto");
+                window.location.replace("http://127.0.0.1:5500/formularioRegistro.html");
             }
         })
         .catch(function (error) {

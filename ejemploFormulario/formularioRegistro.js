@@ -6,9 +6,8 @@ btnRegistrarse.addEventListener("click", function () {
     var params = new URLSearchParams();
     var nombre = document.getElementById("nombre").value;
     var contrasena = document.getElementById("contrasena").value;
-    window.nombreP = nombre;
-    window.contrasenaP = contrasena;
-    alert(nombre);
+    nombreP = nombre;
+    contrasenaP = contrasena;
     params.append("nombre", nombre);
     params.append("contrasena", contrasena);
     axios.get("http://localhost:4567/registrarUsuario?" +  params )
