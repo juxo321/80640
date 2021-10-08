@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar usuario</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <form action="listaUsuarios.html" method="get">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Nuevo nombre de usuario</label>
+              <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">No se compartira ningún dato</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nueva contraseña</label>
+              <input type="password" class="form-control" id="contrasena">
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>
+          </form>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="formularioRegistro.js"></script>
+</body>
+
+</html> 
