@@ -24,10 +24,11 @@ import mx.uv.datos.Automovil;
 public class App {
     private static Gson gson = new Gson();
     private static Map<String, Automovil> automoviles = new HashMap<>();
-    public static void main( String[] args )
-    {
-        options("/*", (request, response) -> {
+    public static void main( String[] args ){
+        port(getHerokuAssignedPort());
+        staticFiles.location("/");
 
+        options("/*", (request, response) -> {
             String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
             if (accessControlRequestHeaders != null) {
                 response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
@@ -42,8 +43,15 @@ public class App {
         });
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
-        
-        //staticFiles.location("/");
+
+
+        get("/", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("nombre", automoviles.values());
+            return new JinjavaEngine().render(
+                new ModelAndView(model, "index.html")
+            );
+		});
         
         post("/registrar", (req, res) -> {
             String json = req.body();
@@ -70,5 +78,13 @@ public class App {
                 new ModelAndView(model, "templates/jinjava.jinja")
             );
 		});
+    }
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 }
