@@ -4,6 +4,7 @@ import static spark.Spark.*;
 import java.util.UUID;
 import com.google.gson.*;
 
+import javafx.stage.Window;
 import mx.uv.db.DAO;
 import mx.uv.db.Usuario;
 
@@ -58,6 +59,36 @@ public class App
             return gson.toJson(dao.listadoUsuario());
         });
 
+
+        post("/eliminar", (req, res) -> {
+            // Insertamos un nuevo usuario
+            String email = req.body();
+            Usuario u = gson.fromJson(email, Usuario.class);
+
+            DAO dao = new DAO();
+            JsonObject respuesta = new JsonObject();
+            respuesta.addProperty("status", dao.eliminarUsuario(u.getEmail()));
+            return respuesta;
+        });  
+
+        post("/modificar", (req, res) -> {
+            String request = req.body();
+            System.out.println("Request: " + request );
+            JsonParser parser = new JsonParser();
+            JsonElement arbol = parser.parse( request );
+            JsonObject peticion = arbol.getAsJsonObject();
+            Object antiguoEmail =  peticion.get("antiguoEmail") ;
+            Object nuevoEmail = peticion.get("nuevoEmail");
+            Object nuevoPassword = peticion.get("nuevoPassword");
+            String antiguoEmailS = antiguoEmail.toString().substring(1, antiguoEmail.toString().length()-1);
+            String nuevoEmailS = nuevoEmail.toString().substring(1, nuevoEmail.toString().length()-1); 
+            String nuevoPasswordS = nuevoPassword.toString().substring(1, nuevoPassword.toString().length()-1); 
+            
+            DAO dao = new DAO();
+            JsonObject respuesta = new JsonObject();
+            respuesta.addProperty("status: ", dao.actualizarUsuario(antiguoEmailS, nuevoEmailS, nuevoPasswordS));
+            return respuesta;
+        });
     }
 
 }

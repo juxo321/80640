@@ -31,3 +31,21 @@ btnLista.addEventListener("click", function () {
     })
     .catch()
 })
+
+var btnEliminar = document.getElementById("btnEliminar");
+btnEliminar.addEventListener("click", function(){
+    axios.post("http://localhost:4567/eliminar", {
+        email: document.getElementById("email").value
+    })
+    .then(function (res) {
+        alert("Estado:" + res.data.status);
+    })
+    .catch(function (error) {
+        console.log(error)
+    })
+})
+
+var btnModificar = document.getElementById("btnModificar");
+btnModificar.addEventListener("click", function(){
+    window.location.replace("http://127.0.0.1:5500/modificar.html");
+})
